@@ -7,6 +7,7 @@ const util = require('util');
 const sprintf = require("sprintf-js").sprintf;
 const dns = require('dns');
 const ibmcos = require('ibm-cos-sdk');
+const HttpsProxyAgent = require('https-proxy-agent');
 const formidable = require('formidable');
 const { spawn } = require('child_process');
 const { exec } = require('child_process');
@@ -32,7 +33,22 @@ app.use(bodyParser.urlencoded({
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
-var cos = new ibmcos.S3(ibmcosconfig);
+const agent = new HttpsProxyAgent({
+    host: 'localhost',
+    port: 8080,
+    secureProxy: true
+});
+ 
+var cos = new ibmcos.S3({
+    apiKeyId: 'apikey',
+    ibmAuthEndpoint: 'authend',
+    serviceInstanceId: 'servid',
+    bucket:'aloha-demo',
+    endpoint:'endpoint',
+    httpOptions: {
+        agent: agent
+    }
+});
 
 var pod = "xxxxx";
 if( process.env.HOSTNAME ) {
