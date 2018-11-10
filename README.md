@@ -12,15 +12,6 @@ which you can:
 * read config maps and secrets from environment vars and files
 * if connected to shared storage, read and write files
 
-KubeToy can be installed via helm chart or directly with these [kubernetes definition 
-files](https://github.com/IBM-ICP-CoC/KubeToy/tree/master/deployment).  
-
-**[Adding Helm chart repository](documentation/AddHelmRepository.md)**
-Add the IBM Cloud Private Center of Competency Helm chart repository to your ICP cluster.
-
-**[Deploying KubeToy from Helm Chart](documentation/DeployHelm.md)** Deploy an older version of the chart 
-from the Helm catalog, verify it is working, then upgrade to the latest version.
-
 **[Playing with the logs](documentation/Logs.md)** 
 Use the app to write to the logs, then view the logs in the UI and via Kibana.
 
