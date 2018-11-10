@@ -8,7 +8,7 @@ which you can:
 
 * write messages to the log (stdout / stderr)
 * intentionally crash the application to view auto repair
-* toggle a liveness probe and monitor kuberenetes behavior  
+* toggle a liveness probe and monitor Kubernetes behavior  
 * read config maps and secrets from environment vars and files
 * if connected to shared storage, read and write files
 
