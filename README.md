@@ -10,7 +10,7 @@ which you can:
 * intentionally crash the application to view auto repair
 * toggle a liveness probe and monitor Kubernetes behavior  
 * read config maps and secrets from environment vars and files
-* if connected to shared storage, read and write files
+* interact with Cloud Object Storage
 
 **[Playing with the logs](documentation/Logs.md)** 
 Use the app to write to the logs, then view the logs in the UI and via Kibana.
@@ -20,10 +20,6 @@ Intentionally crash the application and watch it self heal.
 
 **[ConfigMaps and Secrets](documentation/Config.md)** Explore configuration options for apps 
 deployed to ICP.
-
-**[Shared Filesystem](documentation/Filesystem.md)** Use the shared files system to store and read 
-content across all instances of the application.  File information is persisted even if the app
-crashes.
 
 **[Network](documentation/Network.md)** Ping and do DNS lookups from the server side app.  You can verify
 visibilty of related ClusterIP services.
