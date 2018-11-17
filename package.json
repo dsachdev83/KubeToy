@@ -1,0 +1,21 @@
+{
+	"name": "kubetoy",
+	"version": "1.6.0",
+	"private": true,
+	"scripts": {
+		"start": "node app.js"
+	},
+	"dependencies": {
+		"body-parser": "1.18.*",
+		"ejs": "^2.5.x",
+		"express": "^4.16.4",
+		"filename-reserved-regex": "*",
+		"formidable": "*",
+		"https-proxy-agent": "^2.2.1",
+		"ibm-cos-sdk": "*",
+		"net-ping-hr": "^2.0.x",
+		"sprintf-js": "*",
+		"valid-filename": "*"
+	},
+	"repository": {}
+}

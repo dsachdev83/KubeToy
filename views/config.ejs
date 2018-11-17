@@ -1,0 +1,136 @@
+<html>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="icon" type="image/png" href="images/duck.png">
+	<script src="js/jquery-3.3.1.min.js"></script>
+	<script src="js/popper.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+
+	<title>Kubetoy ConfigMaps and Secrets</title>
+    <script type="text/javascript">
+        function encode() {
+            input = document.getElementById ("input");
+            data = window.btoa (input.value);
+            result = document.getElementById("result");
+            result.value = data;
+        }
+        function decode() {
+            input = document.getElementById ("input");
+            data = window.atob (input.value);
+            result = document.getElementById("result");
+            result.value = data;
+        }
+    </script>
+</head>
+
+<body>
+<div class="container">
+
+<h1>ConfigMaps and Secrets</h1>
+<h6>Pod: <%= pod %></h6>
+
+<p><a href="home">home</a> | 
+<% if( filesystem ) { %><a href="files">filesystem</a> | <% } %>
+<a href="config">config maps and secrets</a> | <a href="cos">Cloud Object Storage</a> | <a href="network">network</a> | <a href="hogs">stress</a> | <a href="about.html">about</a></p>
+
+<div class="container">
+	<ul class="nav nav-tabs" role="tablist">
+		<li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#env">Environment Variables</a></li>
+		<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#configmap">ConfigMap File</a></li>
+		<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#secret">Secret File</a></li>
+	</ul>
+
+	<div class="tab-content">
+		<div id="env" class="container tab-pane active"><br>
+			<pre><%=pretty%></pre>
+		</div>
+
+		<div id="configmap" class="container tab-pane"><br>
+			<p>A Kubernetes ConfigMap resource was created and was mounted to a volume visible to this application.
+				      The ConfigMap definition is:</p>
+<pre class="bg-light">
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: kubetoy-configmap-files
+data:
+  config.json:  '{ "default": "123" }'
+  
+</pre>	     
+			
+			<p>this definition specifies a file with the name <code>config.json</code> whose contents 
+			are a simple json object.  The application sees this file and the current contents are:</p>
+			
+<pre class="bg-light">
+<%= config %>
+</pre>
+			
+			<p>You can change this value with the UI or CLI, and eventually this app will see the 
+			updated content.  This usually takes a few minutes.</p>
+		</div>
+
+		<div id="secret" class="container tab-pane"><br>
+
+	      <p>A Kubernetes Secret resource was created and was mounted to a volume visible to this application.
+	      The Secret definition is:</p>
+	      
+<pre class="bg-light">
+apiVersion: v1
+kind: Secret
+metadata:
+  name: kubetoy-secret-files
+type: Opaque
+data:
+  toy-secret.txt: U2hoLi4uIFRoaXMgaXMgYSBzZWNyZXQu
+    
+</pre>	     
+
+		<p>this definition specifies a file with the name <code>toy-secret.json</code> whose contents 
+		are encoded as a Base64 string in this definition object, but the application reads it as plain 
+		unencoded text.  The current contents of this secret are:</p>
+		
+<pre class="bg-light">
+<%= secret %>
+</pre>
+		<p>You can verify the encoding with the utility at the bottom of this page.  You can also change 
+		this value with the UI or CLI, and eventually this app will see the updated content.  This usually 
+		takes a few minutes to roll out, so if you refresh often you may see it change, and if you access 
+		a different instance (pod) of the app, you might briefly see the original value.</p>
+		
+		<hr/>
+
+	<div>
+	<p>The following utility can be used to convert to and from Baes64 encoding.</p>
+	</div>
+	
+	<div class="card align-top" style="width: 24rem; ">
+	  <div class="card-body">
+	    <h5 class="card-title">Base64 Encoder/Decoder</h5>
+		    <label for="input" >Input</label>
+		    <input type="text" class="form-control" id="input" placeholder="a string value">
+		    <label for="result" >Result</label>
+		    <input type="text" readonly class="form-control" name="result" id="result" value="">
+		    <p></p>
+		    <button class="btn btn-primary btn-sm" onclick="encode();">Encode</button> &nbsp;
+		    <button class="btn btn-primary btn-sm" onclick="decode();">Decode</button>
+	  </div>
+	</div>
+
+		</div>
+	</div>
+	
+</div>
+	
+
+
+</div>
+
+
+
+</body>
+</html>

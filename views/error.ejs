@@ -1,0 +1,40 @@
+<html>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="icon" type="image/png" href="images/duck.png">
+
+	<title>Kubetoy Error</title>
+</head>
+<body>
+<div class="container">
+
+
+<p>pod: <%=pod%> </p>
+<p><a href="home">home</a> | 
+<% if( filesystem ) { %><a href="files">filesystem</a> | <% } %>
+<a href="config">config maps and secrets</a> | <% if( objectstore ) { %><a href="cos">Cloud Object Storage</a> | <% } %> <a href="network">network</a> | <a href="hogs">stress</a> | <a href="about.html">about</a></p>
+
+
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">Error</h5>
+	<pre><%=msg%></pre>
+  </div>
+</div>
+
+
+
+</div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</body>
+</html>
