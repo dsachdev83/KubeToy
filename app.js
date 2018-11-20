@@ -33,11 +33,12 @@ app.use(bodyParser.urlencoded({
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
-const agent = new HttpsProxyAgent({
+/*const agent = new HttpsProxyAgent({
     host: 'localhost',
     port: 8080,
     secureProxy: true
 });
+*/
  
 var cos = new ibmcos.S3({
     apiKeyId: 'apikey',
@@ -45,9 +46,6 @@ var cos = new ibmcos.S3({
     serviceInstanceId: 'servid',
     bucket:'aloha-demo',
     endpoint:'endpoint',
-    httpOptions: {
-        agent: agent
-    }
 });
 
 var pod = "xxxxx";
